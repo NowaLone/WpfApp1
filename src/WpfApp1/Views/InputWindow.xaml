@@ -1,0 +1,34 @@
+﻿<Window
+    x:Class="WpfApp1.Views.InputWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:properties="clr-namespace:WpfApp1.Properties"
+    xmlns:viewmodels="clr-namespace:WpfApp1.ViewModels"
+    Title="{x:Static properties:Resources.Connect}"
+    Width="225"
+    Height="100"
+    d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
+    ResizeMode="CanResize"
+    WindowStyle="ToolWindow"
+    mc:Ignorable="d">
+    <Grid FocusManager.FocusedElement="{Binding ElementName=ConnectionStringTextBox}">
+        <TextBox
+            x:Name="ConnectionStringTextBox"
+            Margin="4"
+            VerticalAlignment="Top"
+            Text="Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=test;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False" />
+        <Button
+            Width="70"
+            Height="20"
+            Margin="4"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            Click="Button_Click"
+            Command="{Binding AddConnectionCommand}"
+            CommandParameter="{Binding Text, ElementName=ConnectionStringTextBox, UpdateSourceTrigger=PropertyChanged}"
+            Content="{x:Static properties:Resources.Ok}"
+            IsDefault="True" />
+    </Grid>
+</Window>
